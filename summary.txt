@@ -1,0 +1,363 @@
+********************  Introduction  ********************
+
+Miguel Teheran.
+
+Analizaremos cada uno de los componentes que necesita .NET para que funcione correctamente.
+
+¿Qué es .NET?.
+Es una plataforma de desarrollo de aplicaciones creada por Microsoft.
+Es un conjunto de librerías que nos permiten desarrollar aplicaciones para diferentes plataformas.
+
+Fue creado en el 2016.
+Es de código abierto.
+Es multiplataforma, es decir, se puede utilizar en cualquier sistema operativo.
+Está programado en C# y C++.
+Orientado a alto rendimiento y la nube.
+
+
+https://learn.microsoft.com/es-es/dotnet/
+https://github.com/dotnet/core
+
+
+********************************************************
+
+
+
+
+
+
+
+
+
+********************  .NET vs. .NET Core  ********************
+
+.NET Framework fue la primer versión lanzada de .NET, mientras que .NET Core es su versión moderna y evolucionada.
+
+.NET Core es igual a .NET
+.NET Core = .NET
+
+
+https://www.youtube.com/c/LatinoNetOnline https://www.youtube.com/c/ComunidadAvanet https://www.youtube.com/c/Per%C3%BANetDevelopment https://www.youtube.com/channel/UCy6mppDJXjYZtsiy2sETKvA
+https://www.youtube.com/channel/UCvtT19MZW8dq5Wwfu6B0oxw
+
+https://www.c-sharpcorner.com/
+https://www.dotnetcurry.com/
+
+
+**************************************************************
+
+
+
+
+
+
+
+
+
+********************  Migraciones  ********************
+
+
+https://learn.microsoft.com/en-us/dotnet/core/porting/
+
+https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer
+
+
+**************************************************************
+
+
+
+
+- - - - - - - - - - - -  COMPONENTES DE .NET  - - - - - - - - - - - -
+
+
+
+
+********************  Common Language Runtime  ********************
+
+Uno de los componentes más importantes en .NET es el CLR (Common language runtime). Es la base en la que se ejecutan las aplicaciones en .NET. 
+
+Todos los lenguajes que trabajan con .NET son lenguajes compilados. Es decir, pasan la sintaxis de alto nivel a una sintaxis de bajo nivel. Una vez realizado este proceso entra a trabajar el componente CLR ejecutando esta sintaxis de bajo nivel.
+En otras palabras, transforma de Common Intermediate Language (CIL) o MSIL a Código Nativo.
+
+El CLR se utiliza en Tiempo de Ejecución, es decir, mientras que programamos o compilamos la aplicación, el CLR no está realizando nada. El CLR solo trabaja cuando ejecutamos nuestra aplicación.
+
+Los lenguajes compatibles con .NET deben compilarse para pasar del lenguaje de alto nivel a un lenguaje intermedio (bajo nivel), el CLR es el encargado de ejecutar este lenguaje intermedio y lo transforma a código nativo para que el computador finalmente pueda entenderlo y ejecutarlo.
+
+https://learn.microsoft.com/en-us/dotnet/standard/managed-execution-process
+
+
+*******************************************************************
+
+
+
+
+
+
+
+
+
+********************  Compilador Roslyn  ********************
+
+Todos los lenguajes que son compatibles con .NET son lenguajes compilados que deben pasar por un proceso de transformación y debe haber un componente que se encargue de realizar esto, en este caso es el Compilador Roslyn.
+
+También conocido como .NET Compiler Platform.
+
+Agiliza el proceso de compilación, es decir el proceso de transformación que tienen los lenguajes de programación de alto nivel a un lenguaje de bajo nivel que pueda ser ejecutado por el CLR visto anteriormente.
+
+Roslyn soporta los lenguajes de programación de C# y Visual Basic. Ambos son analizados y convertidos al lenguaje de bajo nivel por el mismo compilador y al final vamos a tener un resultado que nos va a decir si existen errores de sintaxis, advertencias y sugerencias.
+
+Roslyn viene integrado con el SDK de .NET.
+
+
+*************************************************************
+
+
+
+
+
+
+
+
+
+********************  Common Language Specification  ********************
+
+¿A qué se debe que varios lenguajes de programación sean compatibles con .NET?
+
+Esto no es común en otros frameworks o librerías, que podamos utilizar diferentes  lenguajes de programación tienen las mismas bases y el mismo framework.
+
+El componente que nos permite esto, o que permite que .NET sea así, es el Common Language Specification.
+
+Básicamente es un regla de métricas que deben seguir los lenguajes para que sean compilados todos a un mismo lenguaje de bajo nivel (CIL), para luego ser leídos y ejecutados por .NET.
+
+Permite compilar los lenguajes de alto nivel en un lenguaje común Common Intermediate Language (CIL).
+
+En el caso de .NET, el Common Language Specification traduce al código conocido como Assembly (este código es el mismo para cualquier lenguaje de programación compatible con .NET), siguiendo las reglas establecidas por el Common Language Specification. El que se encarga de esta traducción, como ya lo vimos es Roslyn.
+
+Permite comunicación entre componentes de diferentes lenguajes. Por ejemplo, podríamos tener una librería hecha en Visual Basic y consumirla en C# o viceversa. Esta es una de las grandes ventajas de .NET gracias a este componente.
+
+https://learn.microsoft.com/en-us/dotnet/standard/base-types/common-type-system
+
+
+*************************************************************************
+
+
+
+
+
+
+
+
+
+********************  Common Type System  ********************
+
+Este componente nos ayuda a definir los diferentes tipos de datos que debe tener un lenguaje de programación para que sea compatible con .NET
+
+Todos los lenguajes que son compatibles con .NET tienen cierta coherencia en cuanto los tipos de datos que se utilizan para poder declarar variables.
+
+Provee un modelo de tipos orientado a objetos.
+
+
+**************************************************************
+
+
+
+
+- - - - - - - - - - - -  HERRAMIENTAS E INSTALACIÓN  - - - - - - - - - - - -
+
+
+
+
+********************  Instalación del SDK  ********************
+
+https://dotnet.microsoft.com/en-us/download
+
+Descargamos el instalador que corresponde para nuestro sistema operativo.
+
+Una vez instalado podemos comprobar que se haya instalado correctamente abriendo la terminal y ejecutando el comando "dotnet".
+
+
+https://learn.microsoft.com/es-es/dotnet/core/install/
+
+WSL:
+https://www.dotnetthailand.com/programming-cookbook/wsl-powershell-useful-scripts/install-dotnet
+
+
+***************************************************************
+
+
+
+
+
+
+
+
+
+********************  IDEs para trabajar con .NET  ********************
+
+Podemos utilizar:
+
+- Visual Studio.
+Es el primer IDE que Microsoft liberó para poder trabajar con .NET.
+Es la herramienta más poderosa y más completa para poder trabajar con .NET.
+Es compatible tanto con .NET Framework y con .NET Core, esto quiere decir que podemos trabajar con aplicaciones Legacy que utilicen la versión vieja del framework como aplicaciones nuevas que utilicen la última versión del framework.
+Soporta todos los tipos de proyectos de .NET.
+Únicamente se puede utilizar en Windows. Existe una versión para MAC, pero es una versión distinta a la que se utiliza en Windows.
+
+- Rider de JetBrains.
+Es un IDE que se puede utilizar bajo licencia ,es decir es pago.
+Es más ligero que Visual Studio.
+Es multiplataforma.
+
+Resharper es una extensión paga, que ya viene incluido en este IDE, también se puede utilizar en Visual Studio pero es pago.
+
+- Visual Studio Code.
+Desarrollado por Microsoft.
+Multiplataforma.
+Ligero.
+Gratuito, no existe una versión paga.
+Es de código abierto.
+Soporta la mayoría de lenguajes de programación.
+
+
+***********************************************************************
+
+
+
+
+
+
+
+
+
+********************  DotNet CLI  ********************
+
+Command Line Interface.
+
+Con esta herramienta podremos compilar, ejecutar y publicar nuestros proyectos en .NET
+
+Nos provee una serie de comandos que nos permitirán fácilmente realizar acciones complejas, que si las realizáramos manualmente sería muy difícil.
+
+Tenemos una Interface dentro de la consola que nos va a permitir interactuar directamente con el SDK.
+En vez de tener una Interface visual como normalmente lo tendríamos en cualquier programa, en este caso tenemos una interface que se acopla a la consola de comandos.
+
+EL dotnet CLI se divide en dos grupos grandes comandos:
+
+- Comandos Generales: Se aplican a través de la interacción del SDK y el Sistema Operativo. Esto nos permite crear nuevos proyectos, y crear toda una plantilla dentro de una carpeta específica, crear archivos de configuración, etc.
+
+- Comando Sobre un Proyecto : Son aquellos relacionados directamente a un proyecto ya creado. Para que estos comandos funcionen correctamente, deben ser invocados dentro de una carpeta que contenga un proyecto creado en .NET. Estos comandos podrían ser restaurar un proyecto, compilar, ejecutar, limpiar, ejecutar pruebas, etc.
+
+
+Para utilizar el CLI debemos abrir la terminal, el comando base ya lo vimos es el "dotnet".
+
+dotnet --help nos brinda un listado de comandos para saber cómo funciona el CLI.
+dotnet --version nos lanza la versión con la que estamos trabajando.
+dotnet --info muestra todas las versiones instaladas.
+dotnet new desglosa varias opciones para crear un proyecto en .NET.
+
+
+https://es.wikipedia.org/wiki/Interfaz_de_l%C3%ADnea_de_comandos
+
+
+******************************************************
+
+
+
+
+
+
+
+
+
+********************  Primera App con dotnet CLI  ********************
+
+Para crear un proyecto nuevo en .NET debemos abrir la terminal.
+
+Si escribimos dotnet new nos saltará la lista de los posibles y mas comunes template que podemos crear con dotnet.
+
+Para visualizar el listado completo de todos los templates que podemos crear debemos emplear el comando "dotnet new --list".
+
+Una vez situado en el directorio correspondiente, ejecutamos el comando "dotnet new console" para crear un proyecto de consola.
+
+"El comando dotnet restore restaura todas las dependencias que posee el proyecto para que sea ejecutado".
+
+Luego de haber creado el proyecto de consola, podemos ejecutar el comando "dotnet run" para ejecutar el proyecto. El resultado que muestra por la consola es "Hello, World!" y es lo que trae por defecto el template.
+
+
+Para escoger la versión del SDK, en caso de tener instalado varios y no queramos utilizar la última:
+https://learn.microsoft.com/en-us/dotnet/core/tools/global-json
+
+
+**********************************************************************
+
+
+
+
+
+
+
+
+
+********************  Estructura de un proyecto en .NET  ********************
+
+Veremos cuáles son los archivos involucrados dentro de un proyecto.
+
+Abrimos la consola en el directorio donde habíamos creado el proyecto de consola.
+
+Una vez situado en el directorio correspondiente ejecutamos el comando "code ."  para abrir el proyecto en Visual Studio.
+
+El archivo con extension ".csproj" es el que posee todas las características del proyecto en general. No posee ninguna lógica sino solamente una configuración. Es un archivo con formato XML. Es una estructura que abre y cierra etiquetas. En la primera línea se especifica el SDK.
+El SDK varía según el proyecto en el que estemos trabajando en .NET. Si estamos trabajando en un proyecto web el SDK va ser .NET WEB, si es una aplicación de escritorio el SDK será diferente.
+
+El SDK varía ya que el conjunto de librerías bases a utilizar para un proyecto es totalmente diferente respecto al resto y no vale la pena agregar tantas librerías que no vamos a utilizar.
+
+El "<OutputType>Exe</OutputType>" significa que como resultado de la aplicación obtendremos un .exe
+
+En el targetFramework podemos observar la versión del framework.
+
+El "ImplicitUsings>enable</ImplicitUsings>" nos permite evitar la instanciación de todas las librerías que necesitemos para crear nuestra aplicación.
+
+
+Ahora veamos qué diferencias encontramos con un proyecto de consola respecto de un proyecto web, por ejemplo de una webapi.
+
+Abrimos la consola, nos situamos en el directorio correcto, y ejecutamos el comando "dotnet new webapi" para crear el proyecto web.
+
+
+Inspeccionemos el proyecto webapi.
+
+Si vemos el contenido de la "webapi.csproj" vemos que tiene exactamente lo mismo que el csproj del proyecto de consola. En cuanto al SDK en este caso el web. Adicionalmente tenemos:
+
+<ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+que agrega una referencia a una librería por defecto.
+
+
+En el program, a diferencia del proyecto de consola, este posee mayor cantidad de código.
+
+
+Los archivos csproj y el program son los archivos base de cualquier proyecto en .NET
+
+
+
+
+Diferencias entre Daily Scrum y Status Meeting:
+
+https://www.scrum.org/resources/what-is-a-daily-scrum
+
+
+Product Owner:
+https://www.paradigmadigital.com/techbiz/product-owner-interno-del-cliente/
+
+
+Una de las tantas formas que podríamos llevar a cabo un daily-standup:
+
+https://torrenegra.medium.com/estandap-highly-efficient-daily-meetings-for-agile-and-remote-teams-a035edef0be2
+
+
+https://www.scrum.org/forum/scrum-forum/18026/it-possible-do-anything-between-two-sprints-there-no-time-gap
+https://www.agileadvice.com/2013/05/17/referenceinformation/the-rules-of-scrum-there-are-no-breaks-between-sprints/
+
+
+*****************************************************************************
