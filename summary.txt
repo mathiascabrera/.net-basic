@@ -361,3 +361,67 @@ https://www.agileadvice.com/2013/05/17/referenceinformation/the-rules-of-scrum-t
 
 
 *****************************************************************************
+
+
+
+
+
+
+
+
+
+********************  Compilación y Ejecución  ********************
+
+Al terminar de escribir el pequeño fragmento de código en el program.cs abrimos la terminal y ejecutamos el comando "dotnet run" para ejecutar nuestro proyecto.
+
+En caso que no queramos ejecutar la aplicación y simplemente queremos comprobar que la aplicación esté compilando bien, podemos utilizar el comando "dotnet build", de esta manera únicamente estamos compilando el proyecto. Al ejecutar este comando, se revisa que la sintaxis de todo el programa esté correctamente, que las dependencias del proyecto estén presentes y se puedan descargar.
+
+El comando "dotnet restore" sirve para restaurar las dependencias o las librerías que están en el proyecto. Esto resulta útil cuando descargamos un proyecto que posee muchas dependencias, librerías para restaurar las dependencias.
+
+El comando "dotnet watch run" permite ejecutar el proyecto y revisa los cambios que realicemos en tiempo real para volver a ejecutarlo. Una vez ejecutado completamente el programa, en la terminal aparece el mensaje de que está aguardando cambios en los archivos para volver a ejecutar, entonces si realizamos uno o varios cambios y guardamos esos cambios, automáticamente el proyecto se volverá a ejecutar.
+
+
+*******************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
