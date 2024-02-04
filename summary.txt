@@ -380,6 +380,9 @@ El comando "dotnet restore" sirve para restaurar las dependencias o las librerí
 
 El comando "dotnet watch run" permite ejecutar el proyecto y revisa los cambios que realicemos en tiempo real para volver a ejecutarlo. Una vez ejecutado completamente el programa, en la terminal aparece el mensaje de que está aguardando cambios en los archivos para volver a ejecutar, entonces si realizamos uno o varios cambios y guardamos esos cambios, automáticamente el proyecto se volverá a ejecutar.
 
+Documentación oficial con los Comandos Dotnet
+
+https://docs.microsoft.com/en-us/dotnet/core/tools/
 
 *******************************************************************
 
@@ -391,6 +394,25 @@ El comando "dotnet watch run" permite ejecutar el proyecto y revisa los cambios 
 
 
 
+********************  Archivos de Compilación  ********************
+
+¿Qué archivos se generan al momento de compilar y ejecutar nuestro proyecto?.
+
+Las carpetas "bin" y "obj" están relacionadas a la compilación.
+
+El archivo "obj" posee los archivos que se generan en la compilación de manera temporal. El compilador se encarga de traducir estos archivos y generar todo el paquete que se necesita para luego entregar el resultado final que se va a almacenar en la carpeta "bin".
+
+El archivo con extensión "dll", dentro del "bin", proviene de una compilación, de un lenguaje de programación compilado como es el caso de C#. Allí se almacena toda la lógica de nuestra programación.
+
+El archivo con extensión "exe", dentro del "bin", solo se utiliza para Windows. Sun función es la de ejecutar la aplicación a partir de la compilación realizada. Si buscamos este archivo y le damos en "abrir", es decir clic derecho y abrir, se abrirá la terminal ejecutándose el programa.
+
+El comando "dotnet clean" nos permite limpiar la última compilación realizada, es decir, elimina todo el contenido de la carpeta "bin", no así los archivos de la carpeta "obj" siguen permaneciendo intactos. Esto se debe a que posee archivos temporales y no posee mayores importancias en cuanto a la ejecución del programa. Luego podemos ejecutar el comando "dotnet build" para compilar nuevamente y de esta manera tener nuevamente los archivos ,actualizados, resultantes de la compilación.
+
+
+Básicamente existen dos maneras de compilar en .NET : Modo Debug y Modo reléase. La diferencia radica en que el modo reléase prepara la aplicación para que esté lista en producción y tenga un mejor rendimiento y sea mucho más liviana, en el modo reléase se eliminan todos aquellos archivos que no se necesitan en producción que solo se necesitan en el modo debug(cuando estamos programando). Para compilar en el Modo Release debemos ejecutar el comando "dotnet build --configuration release". Una vez ejecutado este comando podemos apreciar que en la carpeta "bin" aparecerán dos carpetas: Debug y Release. Si abrimos el Release, podemos ver que posee los mismos archivos que vimos anteriormente pero está compilada en un modo diferente 
+
+
+*******************************************************************
 
 
 
@@ -400,6 +422,42 @@ El comando "dotnet watch run" permite ejecutar el proyecto y revisa los cambios 
 
 
 
+********************  Archivo Global JSON  ********************
+
+Es un archivo que nos permite administrar las versiones de los SDK con los que trabajamos con .NET 
+
+Podemos crear el archivo global json de manera global, sin embargo existe dentro del CLI un comando que nos permite crear este archivo de manera automática. Este comando es "dotnet new globaljson".
+
+Luego de ejecutar el comando, se nos creará el archivo "global.json". Por defecto trae una única configuración que es la versión del SDK.
+
+Esto es ideal para cambiar la versión del SDK y forzar a que utilice la versión que nosotros queramos.
+
+{
+  "sdk": {
+    "version": "7.0.400"
+  }
+}
+
+
+Podemos agregar una propiedad bastante importante: allowPrerelease. Esta propiedad la podemos poner en true o false. De esta manera podemos habilitar o deshabilitar el uso de reléase que no son oficiales dentro del ecosistema de .NET generalmente son reléase que están en modo de prueba y que por ende aún no tienen una aprobación final provocando errores en la compilación y ejecución de nuestro proyecto. 
+
+{
+  "sdk": {
+    "allowPrerelease": false,
+    "version": "7.0.400"
+  }
+}
+
+Entonces, de esta manera forzamos a que de ninguna manera, cualquier SDK que sea un prerelease que tengamos instalado en nuestra máquina, se ejecute para un proyecto en particular donde se encuentra el archivo global json.
+
+
+
+Con el comando "dotnet --info" podemos apreciar todas las versiones de .NET que tengamos instaladas de .NET
+
+De este listado de versiones de .NET podemos escoger la que necesitemos, si la tenemos instalada, seleccionar y copiarlo desde la terminal y pegarlo en "version" del archivo global json. Una vez guardada esta modificación en el archivo json, podemos comprobar este cambio de versión utilizada en el proyecto, ejecutando el comando "dotnet --version" de esta manera tendremos la versión en la que se está ejecutando el proyecto actual.
+
+
+***************************************************************
 
 
 
@@ -409,19 +467,18 @@ El comando "dotnet watch run" permite ejecutar el proyecto y revisa los cambios 
 
 
 
+********************  Cómo encontrar paquetes para .NET usando NuGet  ********************
+
+NuGet es el gestor de paquetes de .NET, gracias a este gestor podemos utilizar diferentes librerías publicadas y compartidas por la comunidad de desarrolladores.
+
+También podemos crear nuestro propio servidor NuGet y tener librerías que sean cerradas o privadas que solo puedan ser accedidas o consumidas por nuestra organización.
+
+Podemos buscar lo que necesitemos, por ejemplo en la barra de búsqueda podemos escribir Excel, para trabajar con archivos Excel, y aparecerán varias librerías que podemos emplearlas en nuestro proyecto. Al elegir una nos mostrará los datos más relevantes de la librería y las opciones de cómo las podemos importar o utilizar en nuestro proyecto.
+
+En la próxima clase veremos cómo podemos agregar una de estas librerías a nuestro proyecto utilizando las opciones que nos ofrece la plataforma y de esta manera reutilizar la funcionalidad de una librería y ahorrarnos mucho tiempo realizando una implementación.
 
 
+https://www.nuget.org/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+******************************************************************************************
