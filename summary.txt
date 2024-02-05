@@ -456,6 +456,7 @@ Con el comando "dotnet --info" podemos apreciar todas las versiones de .NET que 
 
 De este listado de versiones de .NET podemos escoger la que necesitemos, si la tenemos instalada, seleccionar y copiarlo desde la terminal y pegarlo en "version" del archivo global json. Una vez guardada esta modificación en el archivo json, podemos comprobar este cambio de versión utilizada en el proyecto, ejecutando el comando "dotnet --version" de esta manera tendremos la versión en la que se está ejecutando el proyecto actual.
 
+Es importante mencionar que la versión debe ser la misma en el archivo "global.json" y en el archivo con extensión csproj que en nuestro caso es ".net-basic.csproj".
 
 ***************************************************************
 
@@ -482,3 +483,146 @@ https://www.nuget.org/
 
 
 ******************************************************************************************
+
+
+
+
+
+
+
+
+
+********************  Descargando un paquete con NuGet  ********************
+
+Para realizar esto supongamos que tenemos un nuevo requerimiento: Debemos mostrar la edad en palabras y no en números.
+
+Para ello debemos modificar la variable "age" en nuestro proyecto. Si intentaramos crear un componente para solucionar este requerimiento sería extremadamente largo ya que existe una infinidad de probabilidades. No obstante ya existe una librería en .NET que nos ayuda a realizar esta funcionalidad por lo que vamos a descargarla, agregarla y realizar la implementación a nuestro proyecto.
+
+Vamos para NuGet y busquemos "humanizer", esta librería nos permite manipular diferentes tipos datos que posee .NET y convertirlos a texto.
+
+La forma más común de agregar las librerías es mediante el CLI, o también mediante el "PackageReference" que es copiar y pegar la referencia que nos ofrece a nuestro proyecto. En este caso vamos a agregar la librería mediante el CLI. Para ello copiamos el comando que nos lanza en la opción ".NET.CLI" y pegamos en nuestra terminal.
+
+Al ejecutar este comando en nuestra terminal de VSCode podemos ir al archivo con extensión csproj y veremos el "PackageReference" donde veremos el "Humanizer":
+
+<ItemGroup>
+    <PackageReference Include="Humanizer" Version="2.14.1" />
+</ItemGroup>
+  
+
+
+Luego debemos ir al program.cs y escribir en la primera linea "using Humanizer" para poder implementar la librería.
+
+
+
+
+
+
+
+Comentario de la clase :
+
+//For all who want a crazy Sample with many variations
+
+
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
+using System.Globalization;
+using System;
+using Humanizer;
+
+
+    
+//  PAQUETE NUGET
+//dotnet add package Humanizer.Core.es --version 2.14.1
+
+// Get all custom cultures.
+System.Console.WriteLine("\n\n Culturas\n");
+CultureInfo[] custom = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+if (custom.Length == 0) {
+    Console.WriteLine("There are no user-defined custom cultures.");
+}
+else {
+    Console.WriteLine("Custom cultures:");
+    //foreach (var culture in custom)
+    // Console.WriteLine("   {0} -- {1}", culture.Name, culture.DisplayName);
+}
+Console.WriteLine();
+
+
+CultureInfo ci = new CultureInfo("es-MX");
+var text1 = DateHumanizeExtensions.Humanize(DateTime.Now,DateTime.UtcNow, ci); 
+var text2 = DateTime.Now.AddMinutes(154).Humanize(culture: ci);
+var text3 = DateTime.Now.AddMinutes(-468).Humanize(culture: ci);
+var text4 = DateTime.Now.AddMinutes(9848646).Humanize(culture: ci);
+Console.WriteLine("Using Date");
+System.Console.WriteLine(DateTime.Now);
+System.Console.WriteLine(text1);
+System.Console.WriteLine(text2);
+System.Console.WriteLine(text3);
+System.Console.WriteLine(text4);
+
+
+//TimeSpans
+TimeSpan.FromMilliseconds(65516165).Humanize(precision:3, culture:ci);
+var text5 = TimeSpan.FromMilliseconds(1299630020).Humanize(maxUnit: Humanizer.Localisation.TimeUnit.Week, 
+                                                            minUnit: Humanizer.Localisation.TimeUnit.Second, 
+                                                            precision: 1 , 
+                                                            culture:ci);
+var text6 = TimeSpan.FromMilliseconds(655544).Humanize(maxUnit: Humanizer.Localisation.TimeUnit.Week, 
+                                                            minUnit: Humanizer.Localisation.TimeUnit.Second, 
+                                                            precision: 1 , 
+                                                            culture:ci);
+var text7 = TimeSpan.FromMilliseconds(6550).Humanize(maxUnit: Humanizer.Localisation.TimeUnit.Week, 
+                                                            minUnit: Humanizer.Localisation.TimeUnit.Second, 
+                                                            precision: 1 , 
+                                                            culture:ci);
+DateTime dbDateSample = DateTime.Now.AddMinutes(25);
+var text8 = "server hour Case: " + TimeSpan.FromSeconds((dbDateSample - DateTime.Now).TotalSeconds).Humanize(maxUnit: Humanizer.Localisation.TimeUnit.Week, 
+                                                            minUnit: Humanizer.Localisation.TimeUnit.Second, 
+                                                            precision: 1 , 
+                                                            culture:ci);
+
+System.Console.WriteLine("Using TimeSpan");
+System.Console.WriteLine(text5);
+System.Console.WriteLine(text6);
+System.Console.WriteLine(text7);
+System.Console.WriteLine(text8);
+
+
+System.Console.WriteLine("Plural - singular");
+Console.WriteLine( "like".ToQuantity(0) );
+Console.WriteLine( "like".ToQuantity(3) );
+Console.WriteLine( "like".ToQuantity(1) );
+Console.WriteLine( "like".ToQuantity(-1) );
+Console.WriteLine( "like".ToQuantity(-14) );
+
+Humanizer.Inflections.Vocabularies.Default.AddIrregular("choripan","choripanes", matchEnding:false);
+Console.WriteLine( "choripan".ToQuantity(0) );
+Console.WriteLine( "choripan".ToQuantity(3) );
+Console.WriteLine( "choripan".ToQuantity(1) );
+Console.WriteLine( "choripan".ToQuantity(-1) );
+Console.WriteLine( "choripan".ToQuantity(-14) );
+
+
+
+Console.WriteLine($"Tengo {22.ToWords(ci)} años");
+
+var culturaActual =  CultureInfo.CurrentCulture;
+System.Console.WriteLine(   culturaActual.Name);
+
+//Obtengo estos resultados: Custom cultures:
+
+//Using Date 7/25/2022 8:43:31 PM ahora en 2 horas hace 7 horas en 18 años Using TimeSpan 2 semanas 10 minutos 6 segundos server hour Case: 24 minutos Plural - singular 0 likes 3 likes 1 like -1 likes -14 likes 0 choripanes 3 choripanes 1 choripan -1 choripanes -14 choripanes Tengo veintidós años en-US
+
+
+
+
+
+
+
+
+Pregunta : Que plugins se recomiendan para trabajar con C# y .NET en visual studio Code.
+
+Respuesta : Te recomendaria este pack que inlcuye todo: https://marketplace.visualstudio.com/items?itemName=doggy8088.netcore-extension-pack
+
+
+****************************************************************************
